@@ -88,8 +88,8 @@ if __name__ == "__main__":
     while millis<millis1:
         millis = int(round(time.time() * 1000))
         now = datetime.datetime.now()
-        nomefile="rilevazione" + now.strftime('%Y,%m,%d,%H,%M,%S') + ".json"
-        file=open(nomefile, "a") #Creazione di un file per ogni secondo/minuto/ora
+        nomefile="rilevazione" + now.strftime('%Y-%m-%d,%H:%M') + ".json" #Crea un file per ogni minuto
+        file=open("/home/pi/Desktop/ProgettoFonometro/FileRilevazioni/"+ nomefile, "a") #Cambiare il percorso
         dB, range, weight, speed = readSPL(dev)
         dati = {'Data':now.strftime('%Y-%m-%d,%H:%M:%S') , 'DB': '{0:.2f}'.format(dB), 'Range': str(range), 'Weight': str(weight), 'Speed': str(speed)}
         json.dump(dati, file, indent=4)
@@ -98,3 +98,4 @@ if __name__ == "__main__":
                 % (dB, weight, speed, now.strftime('%Y,%m,%d,%H,%M,%S')))
 
         time.sleep(1)
+    

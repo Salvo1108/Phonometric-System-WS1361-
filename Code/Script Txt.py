@@ -84,7 +84,7 @@ if __name__ == "__main__":
     setMode(dev)
 
     millis = int(round(time.time() * 1000))
-    millis1=int(round(time.time() * 1000 + 10000))#stampa 1 rilevazione per secondo per 10 secondi.
+    millis1=int(round(time.time() * 1000 +36000000 ))#stampa 1 rilevazione per secondo per 10 ore.
     while millis<millis1:
         millis = int(round(time.time() * 1000))
         now = datetime.datetime.now()
@@ -92,7 +92,7 @@ if __name__ == "__main__":
         dB, range, weight, speed = readSPL(dev)
         file.write(now.strftime('%Y-%m-%d,%H:%M:%S'))
         file.write("-")
-        file.write("DB "+ str(dB))
+        file.write("DB "+ '{0:.2f}'.format(dB))
         file.write("-")
         file.write("Range "+ str(range))
         file.write("-")
